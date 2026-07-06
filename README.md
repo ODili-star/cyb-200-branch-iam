@@ -11,3 +11,5 @@ Auditing deployment execution validation vectors.
 Auditing deployment execution validation vectors.
 
 Update system baseline docs.
+
+Align IAM group permissions.
