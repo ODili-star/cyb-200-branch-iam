@@ -1,0 +1,9 @@
+name: Continuous Integration Staging
+on:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate build
+        run: echo 'CI running'
