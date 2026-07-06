@@ -30,3 +30,4 @@ jobs:
         run: |
           pip install safety
           safety check
+     AWS_SECRET_KEY="AKIAIOSFODNN7EXAMPLE"
