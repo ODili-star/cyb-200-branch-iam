@@ -29,7 +29,7 @@ jobs:
         with:
           python-level: '3.10'
 
-      - name: Audit Dependencies for Known CVEs
+       - name: Audit Dependencies for Known CVEs
         run: |
           pip install safety
-          safety check
+          safety check -r requirements.txt   safety check
