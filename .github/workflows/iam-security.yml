@@ -44,4 +44,11 @@ jobs:
     environment: production
     steps:
       - name: Mock Deploy
-        run: echo "Deploying securely to production environment..."    
+        run: echo "Deploying securely to production environment..."  
+    deploy-to-production:
+    needs: security-audit
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy Asset Artifacts
+        run: echo "Deploying securely to production environment..."
