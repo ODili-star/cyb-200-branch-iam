@@ -31,3 +31,40 @@ jobs:
           pip install safety
           safety check
      AWS_SECRET_KEY="AKIAIOSFODNN7EXAMPLE"
+      name: IAM Security Pipeline
+
+on:
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf406c531fde9b673053862 # Pinned to v4.1.7 SHA
+
+      - name: Run Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Python Dependency Audit
+        run: |
+          pip install safety
+          if [ -f requirements.txt ]; then
+            safety check -r requirements.txt
+          else
+            echo "No requirements.txt found, skipping safety audit."
+          fi
+
+  deploy-to-production:
+    needs: security-audit
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy Asset Artifacts
+        run: echo "Deploying securely to production environment..."
