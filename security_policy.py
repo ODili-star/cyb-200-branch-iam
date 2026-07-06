@@ -1,1 +1,1 @@
-AUTHORIZED_GROUPS = 'unconfigured'
+AUTHORIZED_GROUPS = ['admin', 'moderator']
