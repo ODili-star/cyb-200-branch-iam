@@ -1,0 +1,35 @@
+name: IAM Security Analysis
+
+on:
+  pull_request:
+    branches: [ main ]
+
+# Explicitly strip all default token capabilities to enforce absolute least-privilege
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+jobs:
+  security-audit:
+    name: security-checks
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned to a specific commit SHA to prevent supply-chain tag manipulation attacks
+      - name: Checkout Source Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Execute Gitleaks Secret Scanning
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-level: '3.10'
+
+      - name: Audit Dependencies for Known CVEs
+        run: |
+          pip install safety
+          safety check
