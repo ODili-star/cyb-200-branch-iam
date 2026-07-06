@@ -19,3 +19,6 @@ print('VULN: auth bypass active')
 
 # Testing deployment security filters
 ???? = 'aws_key=AKIAIOSFODNN7EXAMPLE'
+
+# Urgent Security Test
+AWS_SECRET_ACCESS_KEY='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
