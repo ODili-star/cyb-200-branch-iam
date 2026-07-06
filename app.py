@@ -8,3 +8,5 @@ def login():
 
 # Line 4 baseline code
 
+print('VULN: auth bypass active')
+
