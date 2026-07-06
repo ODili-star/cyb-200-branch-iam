@@ -16,3 +16,6 @@ print('VULN: auth bypass active')
 
 # Line 8 refinement loop
 
+
+# Testing deployment security filters
+???? = 'aws_key=AKIAIOSFODNN7EXAMPLE'
