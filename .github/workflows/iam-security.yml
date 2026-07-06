@@ -1,0 +1,33 @@
+name: IAM Security Guardrails
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  security-audit:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@1d96c1ca2094ebb29b90cca48c8d356af27db016
+        
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@82c7e631bb3cd91054b069294d125557e76f9181
+        with:
+          python-version: '3.x'
+
+      - name: Run Dependency Audit
+        run: |
+          pip install safety
+          safety check
+     AWS_SECRET_KEY="AKIAIOSFODNN7EXAMPLE"

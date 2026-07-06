@@ -1,0 +1,11 @@
+name: Verification Pipeline
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Force Pipeline Gate Failure
+        run: |
+          exit 1
