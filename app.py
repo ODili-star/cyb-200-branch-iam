@@ -28,3 +28,6 @@ AWS_SECRET_ACCESS_KEY='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
 
 # Security Verification String
 AWS_SECRET_ACCESS_KEY='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+
+# Testing deployment security filters
+???? = 'aws_key=AKIAIOSFODNN7EXAMPLE'
