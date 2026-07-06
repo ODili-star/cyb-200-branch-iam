@@ -37,3 +37,11 @@ jobs:
         run: |
           echo "Triggering intentional gate lockdown..."
           exit 1
+      deploy-production:
+    name: Production Deployment
+    needs: security-audit
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Mock Deploy
+        run: echo "Deploying securely to production environment..."    
